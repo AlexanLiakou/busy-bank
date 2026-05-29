@@ -35,62 +35,72 @@ const AccountOperations = () => {
  };
 
   return (
-    <div>
-      <h2>Your account operations</h2>
-      <div className="inputs">
-        <div>
-          <label>Deposit</label>
+    <div className="mt-20 sm:mt-15 flex flex-col items-center">
+      <h2 className="text-white mb-10 text-2xl font-bold">Your account operations</h2>
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-4">
+          <label className="text-white font-bold sm:w-100">Deposit:</label>
           <input
+            className="border p-2 font-normal text-white border-white rounded-md outline-0 placeholder:text-sm placeholder:italic"
             type="number"
             value={depositAmount}
             onChange={(e) => setDepositAmount(+e.target.value)}
+            placeholder="i.e. 100"
           />
           <select
+            className="border p-2 font-normal text-white border-white rounded-md outline-0 bg-blue-400"
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
           >
-            <option value="USD">US Dollar</option>
-            <option value="EUR">Euro</option>
-            <option value="GBP">British Pound</option>
+            <option className="font-normal text-white" value="USD">US Dollar</option>
+            <option className="font-normal text-white" value="EUR">Euro</option>
+            <option className="font-normal text-white" value="GBP">British Pound</option>
           </select>
-          <button disabled={depositAmount === '' || account.isLoading} onClick={handleDeposit}>{account.isLoading ? 'Converting...' : `Deposit ${depositAmount}`}</button>
+          <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" disabled={depositAmount === '' || account.isLoading} onClick={handleDeposit}>{account.isLoading ? 'Converting...' : `Deposit ${depositAmount}`}</button>
         </div>
-        <div>
-          <label>Withdraw</label>
-          <input
-            type="number"
-            value={withdrawalAmount}
-            onChange={(e) => setWithdrawalAmount(+e.target.value)}
-          />
-          <button disabled={withdrawalAmount === ''} onClick={handleWithdrawal}>
-            Withdraw {withdrawalAmount}
-          </button>
-        </div>
-
+        {
+          account.balance > 0 && (
+          <div className="flex flex-col gap-4">
+            <label className="text-white font-bold sm:w-100">Withdraw:</label>
+            <input
+              className="border p-2 font-normal text-white border-white rounded-md outline-0 placeholder:text-sm placeholder:italic"
+              type="number"
+              value={withdrawalAmount}
+              onChange={(e) => setWithdrawalAmount(+e.target.value)}
+              placeholder="i.e. 100"
+            />
+            <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" disabled={withdrawalAmount === ''} onClick={handleWithdrawal}>
+              Withdraw {withdrawalAmount}
+            </button>
+          </div>
+          )
+        }
         {
           !account.loan  && (
-            <div>
-              <label>Request loan</label>
+            <div className="flex flex-col gap-4">
+              <label className="text-white font-bold sm:w-100">Request loan (amount/reason):</label>
               <input
+                className="border p-2 font-normal text-white border-white rounded-md outline-0 placeholder:text-sm placeholder:italic"
                 type="number"
                 value={loanAmount}
                 onChange={(e) => setLoanAmount(+e.target.value)}
-                placeholder="Loan amount"
+                placeholder="i.e. 100"
               />
               <input
+                className="border p-2 font-normal text-white border-white rounded-md outline-0 placeholder:text-sm placeholder:italic"
                 value={loanPurpose}
                 onChange={(e) => setLoanPurpose(e.target.value)}
-                placeholder="Loan purpose"
+                placeholder="i.e. Buy a car"
               />
-              <button disabled={loanAmount === '' || loanPurpose === ''} onClick={handleRequestLoan}>Request loan</button>
+              <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" disabled={loanAmount === '' || loanPurpose === ''} onClick={handleRequestLoan}>Request loan</button>
             </div>
           )
         }
         {
           account.loan > 0 && (
-            <div>
-              <span>Pay back {account.loan}$ ({account.loanPurpose})</span>
-              <button onClick={handlePayLoan}>Pay loan</button>
+            <div className="flex flex-col gap-4">
+              <p className="text-white font-bold sm:w-100">Pay back {account.loan}$ ({account.loanPurpose})</p>
+              <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" onClick={handlePayLoan}>Pay loan</button>
             </div>
           )
         }
