@@ -13,13 +13,13 @@ const AccountOperations = () => {
 
  const handleDeposit = () => {
   if(!depositAmount) return;
-  dispatch(deposit(depositAmount, currency));
+  dispatch(deposit({ amount: depositAmount, currency }));
   setDepositAmount('');
  };
 
  const handleWithdrawal = () => {
-  if(!depositAmount) return;
-  dispatch(withdraw(depositAmount));
+  if(!withdrawalAmount) return;
+  dispatch(withdraw(withdrawalAmount));
   setWithdrawalAmount('');
  };
 
@@ -68,7 +68,7 @@ const AccountOperations = () => {
         </div>
 
         {
-          !account.loan > 0 && (
+          !account.loan  && (
             <div>
               <label>Request loan</label>
               <input

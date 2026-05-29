@@ -1,20 +1,17 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { createCustomer } from "./customerSlice";
 
 const Customer = () => {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
   const dispatch = useDispatch();
-  const customer = useSelector((store) => store.customer);
 
  const handleClick = () => {
   if (!fullName || !nationalId) return;
-    dispatch(createCustomer(fullName, nationalId));
-    console.log('Hello');
-  }
+    dispatch(createCustomer(fullName, nationalId));;
+  };
 
-  console.log(customer);
   return (
     <div>
       <h2>Create new customer</h2>
