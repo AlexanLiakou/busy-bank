@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>🏦 BusyBank</h1>
+      <h1 className="text-white font-bold !m-0"><span className="hidden sm:inline">🏦</span> BusyBank</h1>
       {
         fullName ==='' ? (
           <CreateCustomer />
