@@ -13,8 +13,6 @@ const initialState = {
 export const deposit = createAsyncThunk(
   'account/deposit',
   async ({ amount, currency }) => {
-      console.log(currency);
-      console.log(amount);
     if (currency === 'USD') return amount;
 
     const res = await fetch(`https://api.frankfurter.dev/v1/latest?base=${currency}&symbols=USD`);
