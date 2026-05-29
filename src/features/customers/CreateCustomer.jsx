@@ -32,7 +32,7 @@ const Customer = () => {
             onChange={(e) => setNationalId(e.target.value)}
           />
         </div>
-        <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" disabled={fullName  === '' || nationalId  === ''} onClick={handleClick}>Create new customer</button>
+        <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75 disabled:opacity-25" disabled={fullName  === '' || nationalId  === ''} onClick={handleClick}>Create new customer</button>
       </div>
     </div>
   );

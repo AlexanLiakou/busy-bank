@@ -56,7 +56,7 @@ const AccountOperations = () => {
             <option className="font-normal text-white" value="EUR">Euro</option>
             <option className="font-normal text-white" value="GBP">British Pound</option>
           </select>
-          <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" disabled={depositAmount === '' || account.isLoading} onClick={handleDeposit}>{account.isLoading ? 'Converting...' : `Deposit ${depositAmount}`}</button>
+          <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75 disabled:opacity-25" disabled={depositAmount === '' || account.isLoading} onClick={handleDeposit}>{account.isLoading ? 'Converting...' : `Deposit ${depositAmount}`}</button>
         </div>
         {
           account.balance > 0 && (
@@ -69,7 +69,7 @@ const AccountOperations = () => {
               onChange={(e) => setWithdrawalAmount(+e.target.value)}
               placeholder="i.e. 100"
             />
-            <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" disabled={withdrawalAmount === ''} onClick={handleWithdrawal}>
+            <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75 disabled:opacity-25" disabled={withdrawalAmount === '' || withdrawalAmount > account.balance} onClick={handleWithdrawal}>
               Withdraw {withdrawalAmount}
             </button>
           </div>
@@ -92,7 +92,7 @@ const AccountOperations = () => {
                 onChange={(e) => setLoanPurpose(e.target.value)}
                 placeholder="i.e. Buy a car"
               />
-              <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75" disabled={loanAmount === '' || loanPurpose === ''} onClick={handleRequestLoan}>Request loan</button>
+              <button className="rounded-md bg-gray-400 text-white font-bold p-3 cursor-pointer hover:opacity-75 disabled:opacity-25" disabled={loanAmount === '' || loanPurpose === ''} onClick={handleRequestLoan}>Request loan</button>
             </div>
           )
         }
