@@ -8,8 +8,6 @@ const initialState = {
   isLoading: false
 };
 
-// createAsyncThunk handles the three lifecycle actions automatically:
-// deposit/pending, deposit/fulfilled, deposit/rejected
 export const deposit = createAsyncThunk(
   'account/deposit',
   async ({ amount, currency }) => {
