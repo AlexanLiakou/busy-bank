@@ -12,9 +12,9 @@ const accountReducer = (state = initialStateAccount, action) => {
       return { ...state, balance: state.balance + action.payload, isLoading: false};
     case "account/withdraw":
       return { ...state, balance: state.balance - action.payload};
-    case "acount/requestLoan":
+    case "account/requestLoan":
       if (state.loan > 0) return state;
-      //Later
+      console.log(action.payload.amount, action.payload.purpose);
       return { 
         ...state,
         loan: action.payload.amount,
