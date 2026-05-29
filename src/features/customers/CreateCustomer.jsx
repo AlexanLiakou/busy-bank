@@ -15,7 +15,7 @@ const Customer = () => {
   }
 
   return (
-    <div className="!mt-15 flex flex-col items-center">
+    <div className="!mt-20 flex flex-col items-center">
       <h2 className="text-white mb-8 text-2xl font-bold">Create new customer</h2>
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-3">
